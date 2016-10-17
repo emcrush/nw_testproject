@@ -2,7 +2,7 @@
 ### nw_testproject
 
 ###About
-Using ansible 2.3.0 this project will provision 4 servers on RHEL 7 hosts
+Using ansible 2.3.0 this project will provision 4 servers on RHEL 7 hosts in Amazon Cloud (AWS)
 
 1 loadbalancer - haproxy (listening on port 80)
 
