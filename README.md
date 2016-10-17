@@ -24,21 +24,28 @@ ec2_security_group: ****
 - In this instance the ansible controller server was also hosted in AWS.  If this is not the case you will also need to change the file
 inventory/ec2.ini to have public_dns_name
 Use either
+
 destination_variable = public_dns_name
+
 destination_variable = private_dns_name
+
 
 - KeyPair files.  Save ***.pem file in inventory directory with permissions chmod 600
 
 
 To Run:
 cd ~/ansible/
+
 git clone https://github.com/emcrush/nw_testproject.git
+
 cd nw_testproject
 
 To Provision the Servers
+
 ansible-playbook -i ./inventory/ec2.py aws-launch.yml -f 10
 
 To Install and run the application 
+
 ansible-playbook -i ./inventory/ec2.py  site.yml --private-key ./inventory/***.pem
 
 
