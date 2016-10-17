@@ -1,0 +1,42 @@
+---
+## This playbook deploys the whole application stack in this site.  
+
+# Apply common configuration to all hosts
+- hosts: all
+  sudo: yes
+  
+  roles:
+  - common
+
+# Configure and deploy database servers.
+- hosts: tag_ansible_group_dbservers
+  sudo: yes
+
+  roles:
+  - database
+
+  tags:
+  - db
+
+# Configure and deploy the appservers. 
+# the 'base-apache' role which simply sets up Apache, and 'web' which includes
+# our example web application.
+- hosts: tag_ansible_group_appservers
+  sudo: yes
+
+  roles:
+  - appserver
+  
+  tags:
+  - app
+
+# Configure and deploy the load balancer(s).
+- hosts: tag_ansible_group_lbservers
+  sudo: yes
+
+  roles:
+  - loadbalancer
+  
+  tags:
+  - lb
+

@@ -1,0 +1,16 @@
+---
+# This role installs HAProxy and configures it.
+
+ - name: Download and install haproxy
+   yum: name=haproxy state=present
+
+ - name: Configure the haproxy cnf file with hosts
+   template: src=../template/haproxy.cfg.j2 dest=/etc/haproxy/haproxy.cfg
+
+ - name: Configure SELinux to start haproxy on any port
+   seboolean: name=haproxy_connect_any state=true persistent=yes
+
+
+ - name: Start the haproxy service
+   service: name=haproxy state=started enabled=yes
+

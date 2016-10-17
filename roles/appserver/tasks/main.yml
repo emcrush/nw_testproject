@@ -1,0 +1,32 @@
+--- 
+  - name: Install apache and ensure at latest version
+    yum: name=httpd enablerepo=epel state=latest
+  
+  - name: Install php and git module
+    yum: name={{ item }} state=present
+    with_items:
+      - php
+      - php-mysql
+      - git 
+  
+  - name: Start Apache
+    service: name=httpd state=running enabled=yes
+
+  - name: Change Listen port from 80 to 8080
+    lineinfile: dest=/etc/httpd/conf/httpd.conf regexp="^Listen " insertafter="^#Listen " line="Listen 8080"
+
+  - name: Configure SELinux to start mysql on any port
+    seboolean: name=httpd_can_network_connect_db state=true persistent=yes
+
+  - name: Restart apache
+    service: name=httpd state=restarted
+  
+  - name: Remove existing directory
+    file: path=/var/www/html state=absent
+  
+  - name: Copy the code from repository
+    git: repo={{ repository }} dest=/var/www/html/
+  
+  - name: Creates the index.php file
+    template: src=../files/index.php.j2 dest=/var/www/html/index.php
+
