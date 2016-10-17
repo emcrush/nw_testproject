@@ -5,7 +5,9 @@
 Using ansible 2.3.0 this project will provision 4 servers on RHEL 7 hosts
 
 1 loadbalancer - haproxy (listening on port 80)
+
 2 appservers - apache and PHP. apache listening on port 8080 
+
 1 dbserver - mysql on port 3306
 
 
