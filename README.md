@@ -1,7 +1,7 @@
 ----
 ### nw_testproject
 
-#About
+###About
 Using ansible 2.3.0 this project will provision 4 servers on RHEL 7 hosts
 
 1 loadbalancer - haproxy (listening on port 80)
@@ -9,7 +9,7 @@ Using ansible 2.3.0 this project will provision 4 servers on RHEL 7 hosts
 1 dbserver - mysql on port 3306
 
 
-#Requirements and changes
+###Requirements and changes
 - AWS Command Line Interface and boto set up on the ansible controller enviroment
 
 - The file groups_var/all will need to be changed to have revelant values for
@@ -37,7 +37,7 @@ destination_variable = private_dns_name
 
 
 
-#To Run:
+###To Run:
 
 cd ~/ansible/
 
@@ -55,5 +55,5 @@ ansible-playbook -i ./inventory/ec2.py  site.yml --private-key ./inventory/***.p
 
 
 
-#To Test
+###To Test
 Once complete test with http://loadbalancerIP/index.php
